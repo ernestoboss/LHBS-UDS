@@ -71,6 +71,8 @@ function fromMins(m: number){ return `${String(Math.floor(m/60)).padStart(2,"0")
 function nowMins(){ const n=new Date(); return n.getHours()*60+n.getMinutes(); }
 function todayStr(){ return new Date().toISOString().split("T")[0]; }
 function generateBookingPassword(){ return String(Math.floor(100000 + Math.random() * 900000)); }
+function isAdminPath(){ return window.location.pathname.replace(/\/$/,"").endsWith("/admin"); }
+function appHomePath(){ return import.meta.env.BASE_URL || "/"; }
 
 function getHallStatus(hallId: string, recurringBookings: RecurringBooking[], dailyBookings: DailyBooking[]){
   const now = nowMins();
@@ -565,7 +567,7 @@ function HallCard({hall,recurringBookings,dailyBookings,onDetail,onBook,t,tick}:
 // ── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App(){
   const {t,toggle,dark}=useTheme();
-  const [page,setPage]=useState<"home"|"admin">(()=>window.location.pathname === "/admin" ? "admin" : "home");
+  const [page,setPage]=useState<"home"|"admin">(()=>isAdminPath() ? "admin" : "home");
   const [recurringBookings,setRecurringBookings]=useState<RecurringBooking[]>([]);
   const [dailyBookings,setDailyBookings]=useState<DailyBooking[]>([]);
   const [bookingPassword,setBookingPassword]=useState<BookingPassword | null>(null);
@@ -581,7 +583,7 @@ export default function App(){
   const [hallSearch,setHallSearch]=useState("");
 
   useEffect(()=>{
-    const syncPageFromPath = () => setPage(window.location.pathname === "/admin" ? "admin" : "home");
+    const syncPageFromPath = () => setPage(isAdminPath() ? "admin" : "home");
     window.addEventListener("popstate",syncPageFromPath);
     return()=>window.removeEventListener("popstate",syncPageFromPath);
   },[]);
@@ -646,7 +648,7 @@ export default function App(){
   }
 
   function navigateHome(){
-    window.history.pushState(null,"","/");
+    window.history.pushState(null,"",appHomePath());
     setPage("home");
   }
 
