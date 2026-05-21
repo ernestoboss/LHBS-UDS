@@ -401,11 +401,19 @@ function AdminPage({
   );
 
   return(
-    <div style={{maxWidth:900,margin:"0 auto",padding:"2rem 1rem"}}>
-      <div style={{fontWeight:800,fontSize:26,color:t.text,fontFamily:"'Playfair Display',serif",marginBottom:4}}>Admin Panel</div>
-      <div style={{color:t.textSub,fontSize:14,marginBottom:24}}>Manage recurring bookings and daily bookings.</div>
+    <div className="lhbs-admin-page" style={{maxWidth:1040,margin:"0 auto",padding:"2rem 1rem"}}>
+      <div className="lhbs-admin-header" style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:16,marginBottom:22,flexWrap:"wrap"}}>
+        <div>
+          <div style={{fontSize:12,fontWeight:700,color:t.textSub,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}}>Admin Workspace</div>
+          <div style={{fontWeight:800,fontSize:28,color:t.text,fontFamily:"'Playfair Display',serif",marginBottom:5}}>Booking Control Center</div>
+          <div style={{color:t.textSub,fontSize:14,lineHeight:1.6}}>Manage recurring schedules, daily reservations, and the booking password.</div>
+        </div>
+        <button onClick={onLogout} style={{padding:"10px 16px",borderRadius:10,background:t.surface,border:`1px solid ${t.border}`,color:t.textSub,fontSize:13,fontWeight:700,cursor:"pointer"}}>
+          Sign out
+        </button>
+      </div>
 
-      <div style={{background:t.surface,border:`1px solid ${t.border}`,borderRadius:20,padding:20,marginBottom:20,display:"flex",justifyContent:"space-between",gap:16,alignItems:"center",flexWrap:"wrap"}}>
+      <div className="lhbs-admin-password-panel" style={{background:t.surface,border:`1px solid ${t.border}`,borderRadius:16,padding:20,marginBottom:18,display:"flex",justifyContent:"space-between",gap:16,alignItems:"center",flexWrap:"wrap",boxShadow:"0 18px 60px rgba(0,0,0,0.08)"}}>
         <div>
           <div style={{fontSize:12,fontWeight:700,color:t.textSub,textTransform:"uppercase",letterSpacing:"0.05em",marginBottom:6}}>Booking Password</div>
           <div style={{fontSize:28,fontWeight:800,color:t.text,letterSpacing:"0.08em"}}>{bookingPassword?.value || "Not set"}</div>
@@ -418,10 +426,10 @@ function AdminPage({
         </button>
       </div>
 
-      <div style={{display:"flex",gap:8,marginBottom:24,flexWrap:"wrap"}}>
+      <div className="lhbs-admin-tabs" style={{display:"flex",gap:8,marginBottom:22,flexWrap:"wrap",padding:6,background:t.surface,border:`1px solid ${t.border}`,borderRadius:14}}>
         {[['recurring','🔄 Recurring'],['daily','📅 Daily'],['halls','🏛 All Halls']].map(([id,lbl])=>(
           <button key={id} onClick={()=>setTab(id)}
-            style={{padding:"8px 18px",borderRadius:10,border:`1px solid ${tab===id?"#3b82f6":t.border}`,background:tab===id?"rgba(59,130,246,0.12)":"transparent",color:tab===id?"#60a5fa":t.textSub,fontWeight:tab===id?700:500,fontSize:14,cursor:"pointer"}}>
+            style={{padding:"9px 16px",borderRadius:10,border:`1px solid ${tab===id?"#3b82f6":"transparent"}`,background:tab===id?"rgba(59,130,246,0.12)":"transparent",color:tab===id?"#60a5fa":t.textSub,fontWeight:tab===id?700:600,fontSize:14,cursor:"pointer",flex:"1 1 150px"}}>
             {lbl}
           </button>
         ))}
@@ -430,9 +438,10 @@ function AdminPage({
 
       {tab==="recurring"&&(
         <div>
-          <div style={{background:t.surface,border:`1px solid ${t.border}`,borderRadius:20,padding:24,marginBottom:20}}>
-            <div style={{fontSize:14,fontWeight:700,color:t.text,marginBottom:16}}>Add Recurring Booking</div>
-            <div className="lhbs-form-grid" style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr",gap:10,alignItems:"end"}}>
+          <div style={{background:t.surface,border:`1px solid ${t.border}`,borderRadius:16,padding:22,marginBottom:20}}>
+            <div style={{fontSize:16,fontWeight:800,color:t.text,marginBottom:4}}>Add Recurring Booking</div>
+            <div style={{fontSize:13,color:t.textSub,marginBottom:16}}>Create a weekly timetable slot for a hall.</div>
+            <div className="lhbs-admin-form-grid" style={{display:"grid",gridTemplateColumns:"minmax(220px,2fr) repeat(4,minmax(120px,1fr))",gap:10,alignItems:"end"}}>
               <div>
                 <label style={{display:"block",fontSize:11,color:t.textSub,marginBottom:4,textTransform:"uppercase",letterSpacing:"0.05em"}}>Hall</label>
                 <select value={rForm.hallId} onChange={e=>setRForm(f=>({...f,hallId:e.target.value}))}
@@ -473,7 +482,7 @@ function AdminPage({
           {recurringBookings.sort((a,b)=>HALLS.findIndex(h=>h.id===a.hallId)-HALLS.findIndex(h=>h.id===b.hallId)).map(b=>{
             const hall=HALLS.find(h=>h.id===b.hallId);
             return(
-              <div key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 16px",background:t.surface,border:`1px solid ${t.border}`,borderRadius:12,marginBottom:8}}>
+              <div className="lhbs-admin-list-row" key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:14,padding:"14px 16px",background:t.surface,border:`1px solid ${t.border}`,borderRadius:12,marginBottom:8}}>
                 <div>
                   <span style={{fontWeight:700,fontSize:14,color:t.text}}>{hall?.name}</span>
                   <span style={{color:t.textSub,fontSize:13,margin:"0 10px"}}>·</span>
@@ -489,12 +498,12 @@ function AdminPage({
 
       {tab==="daily"&&(
         <div>
-          <div style={{fontWeight:600,fontSize:14,color:t.textSub,marginBottom:16}}>Daily bookings made by users (auto-expire after booking time elapses)</div>
+          <div style={{fontWeight:700,fontSize:14,color:t.textSub,marginBottom:16}}>Daily bookings made by users. These auto-expire after the booking time elapses.</div>
           {dailyBookings.length===0&&<div style={{color:t.textSub,fontSize:14,textAlign:"center",padding:"2rem 0"}}>No daily bookings.</div>}
           {dailyBookings.map(b=>{
             const hall=HALLS.find(h=>h.id===b.hallId);
             return(
-              <div key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 16px",background:t.surface,border:`1px solid ${t.border}`,borderRadius:12,marginBottom:8}}>
+              <div className="lhbs-admin-list-row" key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:14,padding:"14px 16px",background:t.surface,border:`1px solid ${t.border}`,borderRadius:12,marginBottom:8}}>
                 <div>
                   <span style={{fontWeight:700,fontSize:14,color:t.text}}>{hall?.name}</span>
                   <span style={{color:t.textSub,fontSize:13,margin:"0 10px"}}>·</span>
@@ -509,7 +518,7 @@ function AdminPage({
       )}
 
       {tab==="halls"&&(
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:10}}>
+        <div className="lhbs-admin-halls-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:10}}>
           {HALLS.map(h=>{
             const todayDay=DAYS[new Date().getDay()];
             const today=todayStr();
@@ -745,12 +754,16 @@ export default function App(){
         .lhbs-app .lhbs-detail-grid {display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
         .lhbs-app .lhbs-admin-page {padding:2rem 1rem;max-width:900px;margin:0 auto;}
         .lhbs-app .lhbs-admin-login {max-width:400px;margin:4rem auto;padding:0 1rem;}
+        .lhbs-app .lhbs-admin-form-grid {grid-template-columns:minmax(220px,2fr) repeat(4,minmax(120px,1fr));}
+        .lhbs-app .lhbs-admin-list-row > div:first-child {min-width:0;}
+        .lhbs-app .lhbs-admin-list-row button {flex-shrink:0;}
         @media (max-width: 900px) {
           .lhbs-app nav {justify-content:center;}
           .lhbs-app nav > div:first-child {width:100%;text-align:center;}
           .lhbs-app .lhbs-nav-actions {justify-content:center;width:100%;}
           .lhbs-app .lhbs-hero p {max-width:90%;margin:0 auto;}
           .lhbs-app .lhbs-admin-page {padding:1.5rem 1rem;}
+          .lhbs-app .lhbs-admin-form-grid {grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
         }
         @media (max-width: 640px) {
           .lhbs-app nav {padding:1rem 0;align-items:flex-start;}
@@ -763,6 +776,18 @@ export default function App(){
           .lhbs-app .lhbs-admin-login {padding:0 1rem;}
           .lhbs-app .lhbs-admin-page {padding:1rem;}
           .lhbs-app .lhbs-stat-card {min-width:100%;}
+          .lhbs-app .lhbs-admin-header,
+          .lhbs-app .lhbs-admin-password-panel,
+          .lhbs-app .lhbs-admin-list-row {align-items:stretch !important;}
+          .lhbs-app .lhbs-admin-header > *,
+          .lhbs-app .lhbs-admin-password-panel > *,
+          .lhbs-app .lhbs-admin-list-row > * {width:100%;}
+          .lhbs-app .lhbs-admin-form-grid,
+          .lhbs-app .lhbs-admin-halls-grid {grid-template-columns:1fr !important;}
+          .lhbs-app .lhbs-admin-list-row {flex-direction:column;}
+          .lhbs-app .lhbs-admin-list-row button,
+          .lhbs-app .lhbs-admin-password-panel button,
+          .lhbs-app .lhbs-admin-header button {width:100%;}
         }
       `}</style>
 
