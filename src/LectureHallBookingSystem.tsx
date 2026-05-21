@@ -758,16 +758,17 @@ export default function App(){
         .lhbs-app .lhbs-admin-list-row > div:first-child {min-width:0;}
         .lhbs-app .lhbs-admin-list-row button {flex-shrink:0;}
         @media (max-width: 900px) {
-          .lhbs-app nav {justify-content:center;}
-          .lhbs-app nav > div:first-child {width:100%;text-align:center;}
-          .lhbs-app .lhbs-nav-actions {justify-content:center;width:100%;}
+          .lhbs-app nav {justify-content:space-between;}
+          .lhbs-app nav > div:first-child {width:auto;text-align:left;}
+          .lhbs-app .lhbs-nav-actions {justify-content:flex-end;width:auto;}
           .lhbs-app .lhbs-hero p {max-width:90%;margin:0 auto;}
           .lhbs-app .lhbs-admin-page {padding:1.5rem 1rem;}
           .lhbs-app .lhbs-admin-form-grid {grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
         }
         @media (max-width: 640px) {
-          .lhbs-app nav {padding:1rem 0;align-items:flex-start;}
-          .lhbs-app nav > div:last-child {width:100%;justify-content:center;}
+          .lhbs-app nav {height:auto;min-height:60px;padding:0.75rem 1rem;align-items:center;justify-content:space-between;gap:0.75rem;}
+          .lhbs-app nav > div:first-child {flex:1 1 auto;min-width:0;}
+          .lhbs-app nav > div:last-child {width:auto;justify-content:flex-end;flex:0 0 auto;}
           .lhbs-app .lhbs-hero {padding:1rem 0;}
           .lhbs-app .lhbs-grid {grid-template-columns:1fr;}
           .lhbs-app .lhbs-form-grid {grid-template-columns:1fr;}
