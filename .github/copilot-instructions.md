@@ -1,0 +1,3 @@
+- [x] Create a Vite + React + TypeScript project scaffold.
+- [x] Include project metadata and README.
+- [x] Provide commands for install and run.
