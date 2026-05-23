@@ -6,10 +6,10 @@ import { auth, db } from "./firebase";
 
 // ── HALLS DATA ──────────────────────────────────────────────────────────────
 const HALLS = [
-  { id:"BS-GF-LT1",  name:"BS GF LT 1",      fullName:"Basic Sciences Ground Floor Lecture Theatre 1",   block:"Basic Sciences (BS)",      capacity:50 },
-  { id:"BS-GF-LT2",  name:"BS GF LT 2",      fullName:"Basic Sciences Ground Floor Lecture Theatre 2",   block:"Basic Sciences (BS)",      capacity:50 },
-  { id:"BS-GF-LT3",  name:"BS GF LT 3",      fullName:"Basic Sciences Ground Floor Lecture Theatre 3",   block:"Basic Sciences (BS)",      capacity:50 },
-  { id:"BS-GF-LT4",  name:"BS GF LT 4",      fullName:"Basic Sciences Ground Floor Lecture Theatre 4",   block:"Basic Sciences (BS)",      capacity:50 },
+  { id:"BS-GF-LT1",  name:"BS GF LT 1",      fullName:"Biological Sciences Ground Floor Lecture Theatre 1",   block:"Biological Sciences (BS)",      capacity:50 },
+  { id:"BS-GF-LT2",  name:"BS GF LT 2",      fullName:"Biological Sciences Ground Floor Lecture Theatre 2",   block:"Biological Sciences (BS)",      capacity:50 },
+  { id:"BS-GF-LT3",  name:"BS GF LT 3",      fullName:"Biological Sciences Ground Floor Lecture Theatre 3",   block:"Biological Sciences (BS)",      capacity:50 },
+  { id:"BS-GF-LT4",  name:"BS GF LT 4",      fullName:"Biological Sciences Ground Floor Lecture Theatre 4",   block:"Biological Sciences (BS)",      capacity:50 },
   { id:"PS-FF-LT5",  name:"PS FF LT 5",      fullName:"Physical Sciences First Floor Lecture Theatre 5", block:"Physical Sciences (PS)",    capacity:50 },
   { id:"PS-FF-LT6",  name:"PS FF LT 6",      fullName:"Physical Sciences First Floor Lecture Theatre 6", block:"Physical Sciences (PS)",    capacity:50 },
   { id:"PS-FF-LT7",  name:"PS FF LT 7",      fullName:"Physical Sciences First Floor Lecture Theatre 7", block:"Physical Sciences (PS)",    capacity:50 },
@@ -36,22 +36,22 @@ const HALLS = [
   { id:"KODEG-FF-LT2",name:"KODEG FF LT 2",  fullName:"KODEG First Floor Lecture Theatre 2",             block:"KODEG",                     capacity:50 },
   { id:"KODEG-FF-LT3",name:"KODEG FF LT 3",  fullName:"KODEG First Floor Lecture Theatre 3",             block:"KODEG",                     capacity:50 },
   { id:"KODEG-FF-LT4",name:"KODEG FF LT 4",  fullName:"KODEG First Floor Lecture Theatre 4",             block:"KODEG",                     capacity:50 },
-  { id:"SJ-GF-LT1A", name:"SJ GF LT 1A",    fullName:"SJ Block Ground Floor Lecture Theatre 1A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT1B", name:"SJ GF LT 1B",    fullName:"SJ Block Ground Floor Lecture Theatre 1B",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT2A", name:"SJ GF LT 2A",    fullName:"SJ Block Ground Floor Lecture Theatre 2A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT2B", name:"SJ GF LT 2B",    fullName:"SJ Block Ground Floor Lecture Theatre 2B",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT3A", name:"SJ GF LT 3A",    fullName:"SJ Block Ground Floor Lecture Theatre 3A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT3B", name:"SJ GF LT 3B",    fullName:"SJ Block Ground Floor Lecture Theatre 3B",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT4A", name:"SJ GF LT 4A",    fullName:"SJ Block Ground Floor Lecture Theatre 4A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT4B", name:"SJ GF LT 4B",    fullName:"SJ Block Ground Floor Lecture Theatre 4B",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT5A", name:"SJ GF LT 5A",    fullName:"SJ Block Ground Floor Lecture Theatre 5A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT5B", name:"SJ GF LT 5B",    fullName:"SJ Block Ground Floor Lecture Theatre 5B",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT6A", name:"SJ GF LT 6A",    fullName:"SJ Block Ground Floor Lecture Theatre 6A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT6B", name:"SJ GF LT 6B",    fullName:"SJ Block Ground Floor Lecture Theatre 6B",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT7A", name:"SJ GF LT 7A",    fullName:"SJ Block Ground Floor Lecture Theatre 7A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT7B", name:"SJ GF LT 7B",    fullName:"SJ Block Ground Floor Lecture Theatre 7B",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT8A", name:"SJ GF LT 8A",    fullName:"SJ Block Ground Floor Lecture Theatre 8A",         block:"SJ Block",                  capacity:50 },
-  { id:"SJ-GF-LT8B", name:"SJ GF LT 8B",    fullName:"SJ Block Ground Floor Lecture Theatre 8B",         block:"SJ Block",                  capacity:50 },
+  { id:"SJ-GF-LT1A", name:"SJ GF LT 1A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 1A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT1B", name:"SJ GF LT 1B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 1B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT2A", name:"SJ GF LT 2A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 2A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT2B", name:"SJ GF LT 2B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 2B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT3A", name:"SJ GF LT 3A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 3A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT3B", name:"SJ GF LT 3B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 3B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT4A", name:"SJ GF LT 4A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 4A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT4B", name:"SJ GF LT 4B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 4B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT5A", name:"SJ GF LT 5A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 5A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT5B", name:"SJ GF LT 5B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 5B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT6A", name:"SJ GF LT 6A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 6A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT6B", name:"SJ GF LT 6B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 6B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT7A", name:"SJ GF LT 7A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 7A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT7B", name:"SJ GF LT 7B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 7B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT8A", name:"SJ GF LT 8A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 8A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT8B", name:"SJ GF LT 8B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 8B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
 ];
 
 const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -73,6 +73,26 @@ function todayStr(){ return new Date().toISOString().split("T")[0]; }
 function generateBookingPassword(){ return String(Math.floor(100000 + Math.random() * 900000)); }
 function isAdminPath(){ return window.location.pathname.replace(/\/$/,"").endsWith("/admin"); }
 function appHomePath(){ return import.meta.env.BASE_URL || "/"; }
+
+type StarredBookings = Record<string, boolean>;
+function makeStarKey(type: "recurring" | "daily", id: number){
+  return `${type}-${id}`;
+}
+function loadStarredBookings(){
+  try {
+    const raw = window.localStorage.getItem("lhbs-starred");
+    return raw ? JSON.parse(raw) as StarredBookings : {};
+  } catch {
+    return {};
+  }
+}
+function saveStarredBookings(bookings: StarredBookings){
+  try {
+    window.localStorage.setItem("lhbs-starred", JSON.stringify(bookings));
+  } catch {
+    // ignore storage failures
+  }
+}
 
 function getHallStatus(hallId: string, recurringBookings: RecurringBooking[], dailyBookings: DailyBooking[]){
   const now = nowMins();
@@ -121,7 +141,23 @@ function hasConflict(hallId: string, startTime: string, endTime: string, date: s
 
 // ── THEME ───────────────────────────────────────────────────────────────────
 function useTheme(){
-  const [dark,setDark]=useState(true);
+  const [dark,setDark]=useState<boolean>(()=>{
+    try {
+      const stored = window.localStorage.getItem("lhbs-theme");
+      return stored === "light" ? false : true;
+    } catch {
+      return true;
+    }
+  });
+
+  useEffect(()=>{
+    try {
+      window.localStorage.setItem("lhbs-theme", dark ? "dark" : "light");
+    } catch {
+      // ignore storage write failures
+    }
+  },[dark]);
+
   const toggle=()=>setDark(d=>!d);
   const t={
     bg: dark?"#0d0f14":"#f0f2f7",
@@ -165,7 +201,7 @@ function Toast({msg,type,t}: {msg:string; type: ToastState['type']; t:any}){
 }
 
 // ── HALL DETAIL MODAL ────────────────────────────────────────────────────────
-function HallDetail({hall,recurringBookings,dailyBookings,onClose,onBook,t}: {hall: Hall; recurringBookings: RecurringBooking[]; dailyBookings: DailyBooking[]; onClose: ()=>void; onBook:(hall:Hall)=>void; t:any}){
+function HallDetail({hall,recurringBookings,dailyBookings,onClose,onBook,t,starredBookings,onToggleStar}: {hall: Hall; recurringBookings: RecurringBooking[]; dailyBookings: DailyBooking[]; onClose: ()=>void; onBook:(hall:Hall)=>void; t:any; starredBookings: StarredBookings; onToggleStar:(type:"recurring"|"daily",id:number)=>void}){
   const status=getHallStatus(hall.id,recurringBookings,dailyBookings);
   const todayDay=DAYS[new Date().getDay()];
   const today=todayStr();
@@ -194,26 +230,44 @@ function HallDetail({hall,recurringBookings,dailyBookings,onClose,onBook,t}: {ha
         </div>
         {recurring.length>0&&(
           <div style={{marginBottom:16}}>
-            <div style={{fontSize:12,fontWeight:700,color:t.textSub,textTransform:"uppercase",letterSpacing:"0.05em",marginBottom:10}}>Recurring Schedule</div>
-            {recurring.map(b=>(
-              <div key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 12px",background:t.surface2,borderRadius:8,marginBottom:6,fontSize:13}}>
-                <span style={{color:t.text,fontWeight:600}}>{b.day}</span>
-                <span style={{color:t.textSub}}>{b.startTime} – {b.endTime}</span>
-                <span style={{color:t.textHint,fontSize:12}}>{b.label||"Class"}</span>
-              </div>
-            ))}
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
+              <div style={{fontSize:12,fontWeight:700,color:t.textSub,textTransform:"uppercase",letterSpacing:"0.05em"}}>Recurring Schedule</div>
+              <div style={{fontSize:11,color:t.textHint}}>Star to get alerts</div>
+            </div>
+            {recurring.map(b=>{
+              const starred = starredBookings[makeStarKey("recurring",b.id)];
+              return (
+                <div key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 12px",background:t.surface2,borderRadius:8,marginBottom:6,fontSize:13}}>
+                  <span style={{color:t.text,fontWeight:600}}>{b.day}</span>
+                  <span style={{color:t.textSub}}>{b.startTime} – {b.endTime}</span>
+                  <span style={{color:t.textHint,fontSize:12}}>{b.label||"Class"}</span>
+                  <button onClick={()=>onToggleStar("recurring",b.id)} style={{background:"transparent",border:"none",color:starred?"#fbbf24":t.textSub,fontSize:18,cursor:"pointer"}} aria-label={starred?"Unsubscribe":"Subscribe"}>
+                    {starred?"★":"☆"}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         )}
         {todayDaily.length>0&&(
           <div style={{marginBottom:16}}>
-            <div style={{fontSize:12,fontWeight:700,color:t.textSub,textTransform:"uppercase",letterSpacing:"0.05em",marginBottom:10}}>Today's Extra Bookings</div>
-            {todayDaily.map(b=>(
-              <div key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 12px",background:t.amberBg,border:`1px solid rgba(245,158,11,0.2)`,borderRadius:8,marginBottom:6,fontSize:13}}>
-                <span style={{color:t.text,fontWeight:600}}>{b.startTime} – {b.endTime}</span>
-                <span style={{color:t.textSub}}>{b.label||"Daily booking"}</span>
-                <span style={{color:t.amber,fontSize:11,fontWeight:600}}>TODAY</span>
-              </div>
-            ))}
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
+              <div style={{fontSize:12,fontWeight:700,color:t.textSub,textTransform:"uppercase",letterSpacing:"0.05em"}}>Today's Extra Bookings</div>
+              <div style={{fontSize:11,color:t.textHint}}>Star to get alerts</div>
+            </div>
+            {todayDaily.map(b=>{
+              const starred = starredBookings[makeStarKey("daily",b.id)];
+              return (
+                <div key={b.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 12px",background:t.amberBg,border:`1px solid rgba(245,158,11,0.2)`,borderRadius:8,marginBottom:6,fontSize:13}}>
+                  <span style={{color:t.text,fontWeight:600}}>{b.startTime} – {b.endTime}</span>
+                  <span style={{color:t.textSub}}>{b.label||"Daily booking"}</span>
+                  <span style={{color:t.amber,fontSize:11,fontWeight:600}}>TODAY</span>
+                  <button onClick={()=>onToggleStar("daily",b.id)} style={{background:"transparent",border:"none",color:starred?"#fbbf24":t.textSub,fontSize:18,cursor:"pointer"}} aria-label={starred?"Unsubscribe":"Subscribe"}>
+                    {starred?"★":"☆"}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         )}
         <button onClick={()=>onBook(hall)} style={{width:"100%",padding:"12px",borderRadius:12,background:"linear-gradient(135deg,#3b82f6,#2563eb)",color:"#fff",border:"none",fontSize:15,fontWeight:700,cursor:"pointer"}}>
@@ -579,6 +633,7 @@ export default function App(){
   const [page,setPage]=useState<"home"|"admin">(()=>isAdminPath() ? "admin" : "home");
   const [recurringBookings,setRecurringBookings]=useState<RecurringBooking[]>([]);
   const [dailyBookings,setDailyBookings]=useState<DailyBooking[]>([]);
+  const [starredBookings,setStarredBookings]=useState<StarredBookings>(()=>loadStarredBookings());
   const [bookingPassword,setBookingPassword]=useState<BookingPassword | null>(null);
   const [user,setUser]=useState<User | null>(null);
   const [authLoading,setAuthLoading]=useState(true);
@@ -601,6 +656,10 @@ export default function App(){
     setUser(user);
     setAuthLoading(false);
   }),[]);
+
+  useEffect(()=>{
+    saveStarredBookings(starredBookings);
+  },[starredBookings]);
 
   useEffect(()=>{
     const recurringRef = ref(db,"recurringBookings");
@@ -656,6 +715,30 @@ export default function App(){
     setBookHall(hall);
   }
 
+  function requestNotificationPermission(){
+    if(typeof Notification === "undefined" || !("permission" in Notification)) return;
+    if(Notification.permission === "default"){
+      Notification.requestPermission();
+    }
+  }
+
+  function toggleStar(type: "recurring" | "daily", id: number){
+    const key = makeStarKey(type,id);
+    const currentlyStarred = !!starredBookings[key];
+    setStarredBookings(prev=>{
+      const next = {...prev};
+      if(next[key]) delete next[key];
+      else next[key] = true;
+      return next;
+    });
+    if(currentlyStarred){
+      showToast("Unsubscribed from notifications for this booking.","warn");
+    } else {
+      requestNotificationPermission();
+      showToast("Subscribed to notifications for this booking.");
+    }
+  }
+
   function navigateHome(){
     window.history.pushState(null,"",appHomePath());
     setPage("home");
@@ -678,14 +761,23 @@ export default function App(){
     });
   },[tick,dailyBookings]);
 
+  function maybeNotifyUser(msg:string,type:ToastState['type'],bookingType:"recurring"|"daily",bookingId:number){
+    showToast(msg,type);
+    const starKey = makeStarKey(bookingType,bookingId);
+    if(!starredBookings[starKey]) return;
+    if(typeof Notification !== "undefined" && Notification.permission === "granted"){
+      new Notification("LHBS Notification", { body: msg });
+    }
+  }
+
   // Notifications: 10min before + on end
   useEffect(()=>{
     const now=nowMins();
     const todayDay=DAYS[new Date().getDay()];
     const today=todayStr();
     const allBookings=[
-      ...recurringBookings.filter(b=>b.day===todayDay).map(b=>({...b,date:today})),
-      ...dailyBookings.filter(b=>b.date===today),
+      ...recurringBookings.filter(b=>b.day===todayDay).map(b=>({...b,date:today,bookingType:"recurring" as const})),
+      ...dailyBookings.filter(b=>b.date===today).map(b=>({...b,bookingType:"daily" as const})),
     ];
     allBookings.forEach(b=>{
       const start=toMins(b.startTime);
@@ -695,14 +787,14 @@ export default function App(){
       const keyEnd=`${b.id}-end`;
       if(!notifiedMap[keyPre]&&now>=start-10&&now<start){
         setNotifiedMap(m=>({...m,[keyPre]:true}));
-        showToast(`⏰ ${hall?.name}: class starts in ${start-now} min!`,"warn");
+        maybeNotifyUser(`⏰ ${hall?.name}: class starts in ${start-now} min!`,`warn`,b.bookingType,b.id);
       }
       if(!notifiedMap[keyEnd]&&now>=end&&now<end+2){
         setNotifiedMap(m=>({...m,[keyEnd]:true}));
-        showToast(`✅ ${hall?.name}: class ended. Hall is now free.`,"success");
+        maybeNotifyUser(`✅ ${hall?.name}: class ended. Hall is now free.`,`success`,b.bookingType,b.id);
       }
     });
-  },[tick,recurringBookings,dailyBookings]);
+  },[tick,recurringBookings,dailyBookings,notifiedMap,starredBookings]);
 
   function showToast(msg:string,type:ToastState['type']="success"){
     setToast({msg,type});
@@ -927,7 +1019,8 @@ export default function App(){
       {/* Modals */}
       {detailHall&&(
         <HallDetail hall={detailHall} recurringBookings={recurringBookings} dailyBookings={dailyBookings}
-          onClose={()=>setDetailHall(null)} onBook={h=>{setDetailHall(null);handleBookRequest(h);}} t={t}/>
+          onClose={()=>setDetailHall(null)} onBook={h=>{setDetailHall(null);handleBookRequest(h);}} t={t}
+          starredBookings={starredBookings} onToggleStar={toggleStar} />
       )}
       {bookHall&&(
         <BookModal hall={bookHall} recurringBookings={recurringBookings} dailyBookings={dailyBookings}
