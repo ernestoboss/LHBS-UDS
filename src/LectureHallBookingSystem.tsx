@@ -5,37 +5,39 @@ import { ref, onValue, set, remove } from "firebase/database";
 import { auth, db } from "./firebase";
 
 // ── HALLS DATA ──────────────────────────────────────────────────────────────
-const HALLS = [
-  { id:"BS-GF-LT1",  name:"BS GF LT 1",      fullName:"Biological Sciences Ground Floor Lecture Theatre 1",   block:"Biological Sciences (BS)",      capacity:50 },
-  { id:"BS-GF-LT2",  name:"BS GF LT 2",      fullName:"Biological Sciences Ground Floor Lecture Theatre 2",   block:"Biological Sciences (BS)",      capacity:50 },
-  { id:"BS-GF-LT3",  name:"BS GF LT 3",      fullName:"Biological Sciences Ground Floor Lecture Theatre 3",   block:"Biological Sciences (BS)",      capacity:50 },
-  { id:"BS-GF-LT4",  name:"BS GF LT 4",      fullName:"Biological Sciences Ground Floor Lecture Theatre 4",   block:"Biological Sciences (BS)",      capacity:50 },
-  { id:"PS-FF-LT5",  name:"PS FF LT 5",      fullName:"Physical Sciences First Floor Lecture Theatre 5", block:"Physical Sciences (PS)",    capacity:50 },
-  { id:"PS-FF-LT6",  name:"PS FF LT 6",      fullName:"Physical Sciences First Floor Lecture Theatre 6", block:"Physical Sciences (PS)",    capacity:50 },
-  { id:"PS-FF-LT7",  name:"PS FF LT 7",      fullName:"Physical Sciences First Floor Lecture Theatre 7", block:"Physical Sciences (PS)",    capacity:50 },
-  { id:"AG-LT8",     name:"AG LT 8",         fullName:"Agriculture Block Lecture Theatre 8",              block:"Agriculture (AG)",          capacity:50 },
-  { id:"AG-LT9",     name:"AG LT 9",         fullName:"Agriculture Block Lecture Theatre 9",              block:"Agriculture (AG)",          capacity:50 },
-  { id:"VS-LT11",    name:"VS LT 11",        fullName:"Veterinary Sciences Lecture Theatre 11",           block:"Veterinary Sciences (VS)",  capacity:50 },
-  { id:"VS-LT12",    name:"VS LT 12",        fullName:"Veterinary Sciences Lecture Theatre 12",           block:"Veterinary Sciences (VS)",  capacity:50 },
-  { id:"AUDITORIUM", name:"AUDITORIUM",      fullName:"Main Auditorium, Nyankpala Campus",                block:"Main Campus",               capacity:50 },
-  { id:"LIB-LT1",    name:"LIB LT 1",        fullName:"Library Block Lecture Theatre 1",                 block:"Library (LIB)",             capacity:50 },
-  { id:"LIB-LT2",    name:"LIB LT 2",        fullName:"Library Block Lecture Theatre 2",                 block:"Library (LIB)",             capacity:50 },
-  { id:"LIB-LT3",    name:"LIB LT 3",        fullName:"Library Block Lecture Theatre 3",                 block:"Library (LIB)",             capacity:50 },
-  { id:"GREAT-HALL-1",name:"GREAT HALL 1",   fullName:"Great Hall 1, Nyankpala Campus",                  block:"Great Hall",                capacity:50 },
-  { id:"GREAT-HALL-2",name:"GREAT HALL 2",   fullName:"Great Hall 2, Nyankpala Campus",                  block:"Great Hall",                capacity:50 },
-  { id:"GREAT-HALL-3",name:"GREAT HALL 3",   fullName:"Great Hall 3, Nyankpala Campus",                  block:"Great Hall",                capacity:50 },
-  { id:"DAAD-LT1",   name:"DAAD LT 1",       fullName:"DAAD Block Lecture Theatre 1",                    block:"DAAD",                      capacity:50 },
-  { id:"DAAD-LT2",   name:"DAAD LT 2",       fullName:"DAAD Block Lecture Theatre 2",                    block:"DAAD",                      capacity:50 },
-  { id:"DAAD-LT3",   name:"DAAD LT 3",       fullName:"DAAD Block Lecture Theatre 3",                    block:"DAAD",                      capacity:50 },
-  { id:"KODEG-GF-LT1",name:"KODEG GF LT 1",  fullName:"KODEG Ground Floor Lecture Theatre 1",            block:"KODEG",                     capacity:50 },
-  { id:"KODEG-GF-LT2",name:"KODEG GF LT 2",  fullName:"KODEG Ground Floor Lecture Theatre 2",            block:"KODEG",                     capacity:50 },
-  { id:"KODEG-GF-LT3",name:"KODEG GF LT 3",  fullName:"KODEG Ground Floor Lecture Theatre 3",            block:"KODEG",                     capacity:50 },
-  { id:"KODEG-GF-LT4",name:"KODEG GF LT 4",  fullName:"KODEG Ground Floor Lecture Theatre 4",            block:"KODEG",                     capacity:50 },
-  { id:"KODEG-GF-LT5",name:"KODEG GF LT 5",  fullName:"KODEG Ground Floor Lecture Theatre 5",            block:"KODEG",                     capacity:50 },
-  { id:"KODEG-FF-LT1",name:"KODEG FF LT 1",  fullName:"KODEG First Floor Lecture Theatre 1",             block:"KODEG",                     capacity:50 },
-  { id:"KODEG-FF-LT2",name:"KODEG FF LT 2",  fullName:"KODEG First Floor Lecture Theatre 2",             block:"KODEG",                     capacity:50 },
-  { id:"KODEG-FF-LT3",name:"KODEG FF LT 3",  fullName:"KODEG First Floor Lecture Theatre 3",             block:"KODEG",                     capacity:50 },
-  { id:"KODEG-FF-LT4",name:"KODEG FF LT 4",  fullName:"KODEG First Floor Lecture Theatre 4",             block:"KODEG",                     capacity:50 },
+const HALLS_RAW = [
+  { id:"BS-GF-LT1",  name:"BS GF LT 1",      fullName:"Biological Sciences Ground Floor Lecture Theatre 1",   block:"Biological Sciences (BS)",      capacity:60 },
+  { id:"BS-GF-LT2",  name:"BS GF LT 2",      fullName:"Biological Sciences Ground Floor Lecture Theatre 2",   block:"Biological Sciences (BS)",      capacity:54 },
+  { id:"BS-GF-LT3",  name:"BS GF LT 3",      fullName:"Biological Sciences Ground Floor Lecture Theatre 3",   block:"Biological Sciences (BS)",      capacity:57 },
+  { id:"BS-GF-LT4",  name:"BS GF LT 4",      fullName:"Biological Sciences Ground Floor Lecture Theatre 4",   block:"Biological Sciences (BS)",      capacity:135 },
+  { id:"PS-FF-LT5",  name:"PS FF LT 5",      fullName:"Physical Sciences First Floor Lecture Theatre 5", block:"Physical Sciences (PS)",    capacity:45 },
+  { id:"PS-FF-LT6",  name:"PS FF LT 6",      fullName:"Physical Sciences First Floor Lecture Theatre 6", block:"Physical Sciences (PS)",    capacity:75 },
+  { id:"PS-FF-LT7",  name:"PS FF LT 7",      fullName:"Physical Sciences First Floor Lecture Theatre 7", block:"Physical Sciences (PS)",    capacity:153 },
+  { id:"AG-LT8",     name:"AG LT 8",         fullName:"Agriculture Block Lecture Theatre 8",              block:"Agriculture (AG)",          capacity:60 },
+  { id:"AG-LT9",     name:"AG LT 9",         fullName:"Agriculture Block Lecture Theatre 9",              block:"Agriculture (AG)",          capacity:54 },
+  { id:"VS-LT10",    name:"VS LT 10",        fullName:"Veterinary Sciences Lecture Theatre 10",           block:"Veterinary Sciences (VS)",  capacity:36 },
+  { id:"VS-LT11",    name:"VS LT 11",        fullName:"Veterinary Sciences Lecture Theatre 11",           block:"Veterinary Sciences (VS)",  capacity:51 },
+  { id:"VS-LT12",    name:"VS LT 12",        fullName:"Veterinary Sciences Lecture Theatre 12",           block:"Veterinary Sciences (VS)",  capacity:48 },
+  { id:"AUDITORIUM", name:"AUDITORIUM",      fullName:"Main Auditorium, Nyankpala Campus",                block:"Main Campus",               capacity:500 },
+  { id:"LIB-LT1",    name:"LIB LT 1",        fullName:"Library Block Lecture Theatre 1",                 block:"Library (LIB)",             capacity:102 },
+  { id:"LIB-LT2",    name:"LIB LT 2",        fullName:"Library Block Lecture Theatre 2",                 block:"Library (LIB)",             capacity:112 },
+  { id:"LIB-LT3",    name:"LIB LT 3",        fullName:"Library Block Lecture Theatre 3",                 block:"Library (LIB)",             capacity:84 },
+  { id:"GREAT-HALL-A",name:"GREAT HALL A",   fullName:"Great Hall A, Nyankpala Campus",                  block:"Great Hall",                capacity:204 },
+  { id:"GREAT-HALL-B",name:"GREAT HALL B",   fullName:"Great Hall B, Nyankpala Campus",                  block:"Great Hall",                capacity:192 },
+  { id:"GREAT-HALL-C",name:"GREAT HALL C",   fullName:"Great Hall C, Nyankpala Campus",                  block:"Great Hall",                capacity:192 },
+  { id:"DAAD-LT1",   name:"DAAD LT 1",       fullName:"DAAD Block Lecture Theatre 1",                    block:"MEET UNIT",                      capacity:84 },
+  { id:"DAAD-LT2",   name:"DAAD LT 2",       fullName:"DAAD Block Lecture Theatre 2",                    block:"MEET UNIT",                      capacity:69 },
+  { id:"DAAD-LT3",   name:"DAAD LT 3",       fullName:"DAAD Block Lecture Theatre 3",                    block:"MEET UNIT",                      capacity:126 },
+  { id:"KODEG-GF-LT1",name:"KODEG GF LT 1",  fullName:"KODEG Ground Floor Lecture Theatre 1",            block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-GF-LT2",name:"KODEG GF LT 2",  fullName:"KODEG Ground Floor Lecture Theatre 2",            block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-GF-LT3",name:"KODEG GF LT 3",  fullName:"KODEG Ground Floor Lecture Theatre 3",            block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-GF-LT4",name:"KODEG GF LT 4",  fullName:"KODEG Ground Floor Lecture Theatre 4",            block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-GF-LT5",name:"KODEG GF LT 5",  fullName:"KODEG Ground Floor Lecture Theatre 5",            block:"GETFUND",                     capacity:25 },
+  { id:"KODEG-FF-LT1",name:"KODEG FF LT 1",  fullName:"KODEG First Floor Lecture Theatre 1",             block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-FF-LT2",name:"KODEG FF LT 2",  fullName:"KODEG First Floor Lecture Theatre 2",             block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-FF-LT3",name:"KODEG FF LT 3",  fullName:"KODEG First Floor Lecture Theatre 3",             block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-FF-LT4",name:"KODEG FF LT 4",  fullName:"KODEG First Floor Lecture Theatre 4",             block:"GETFUND",                     capacity:42 },
+  { id:"KODEG-FF-LT5",name:"KODEG FF LT 5",  fullName:"KODEG First Floor Lecture Theatre 5",             block:"GETFUND",                     capacity:25 },
   { id:"SJ-GF-LT1A", name:"SJ GF LT 1A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 1A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT1B", name:"SJ GF LT 1B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 1B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT2A", name:"SJ GF LT 2A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 2A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
@@ -54,10 +56,46 @@ const HALLS = [
   { id:"SJ-GF-LT8B", name:"SJ GF LT 8B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 8B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
 ];
 
+function getHallCoords(id:string, block:string){
+  if(block === "Biological Sciences (BS)" || block === "Physical Sciences (PS)"){
+    return {lat:9.414236, lng:-0.986316};
+  }
+  if(block === "Agriculture (AG)"){
+    return {lat:9.4153683611, lng:-0.9861966111};
+  }
+  if(block === "DAAD"){
+    return {lat:9.412128, lng:-0.980902};
+  }
+  if(block === "Library (LIB)"){
+    return {lat:9.413912, lng:-0.980027};
+  }
+  if(block === "KODEG"){
+    return {lat:9.413674, lng:-0.981385};
+  }
+  if(block === "Silver Jubilee (SJ)"){
+    return {lat:9.415292, lng:-0.985305};
+  }
+  if(block === "Great Hall"){
+    return {lat:9.41544, lng:-0.98644};
+  }
+  if(block === "Main Campus" && id === "AUDITORIUM"){
+    return {lat:9.412907, lng:-0.86048};
+  }
+  if(block === "Veterinary Sciences (VS)"){
+    if(id === "VS-LT12"){
+      return {lat:9.414145, lng:-0.9858345};
+    }
+    return {lat:9.414622, lng:-0.9857537};
+  }
+  return {lat:0, lng:0};
+}
+
+const HALLS = HALLS_RAW.map(h => ({ ...h, location: h.block, coords: getHallCoords(h.id, h.block) }));
+
 const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const SHORT_DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-type Hall = { id:string; name:string; fullName:string; block:string; capacity:number; };
+type Hall = { id:string; name:string; fullName:string; block:string; location:string; coords:{lat:number;lng:number}; capacity:number; };
 type RecurringBooking = { id:number; hallId:string; day:string; startTime:string; endTime:string; label:string; };
 type DailyBooking = { id:number; hallId:string; date:string; startTime:string; endTime:string; label:string; };
 type BookingForm = { date:string; startTime:string; endTime:string; label:string; };
@@ -203,6 +241,10 @@ function Toast({msg,type,t}: {msg:string; type: ToastState['type']; t:any}){
 // ── HALL DETAIL MODAL ────────────────────────────────────────────────────────
 function HallDetail({hall,recurringBookings,dailyBookings,onClose,onBook,t,starredBookings,onToggleStar}: {hall: Hall; recurringBookings: RecurringBooking[]; dailyBookings: DailyBooking[]; onClose: ()=>void; onBook:(hall:Hall)=>void; t:any; starredBookings: StarredBookings; onToggleStar:(type:"recurring"|"daily",id:number)=>void}){
   const status=getHallStatus(hall.id,recurringBookings,dailyBookings);
+  const openDirections=()=>{
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${hall.coords.lat},${hall.coords.lng}`;
+    window.open(url, "_blank");
+  };
   const todayDay=DAYS[new Date().getDay()];
   const today=todayStr();
   const recurring=recurringBookings.filter(b=>b.hallId===hall.id).sort((a,b)=>DAYS.indexOf(a.day)-DAYS.indexOf(b.day)||toMins(a.startTime)-toMins(b.startTime));
@@ -218,10 +260,15 @@ function HallDetail({hall,recurringBookings,dailyBookings,onClose,onBook,t,starr
           <button onClick={onClose} style={{background:"transparent",border:"none",color:t.textSub,fontSize:22,cursor:"pointer",lineHeight:1}}>×</button>
         </div>
         <div className="lhbs-detail-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,marginBottom:20}}>
-          {[["Block",hall.block],["Capacity",`${hall.capacity} seats`],["Status",status.occupied?"Occupied":"Available"]].map(([k,v])=>(
+          {[["Location",hall.location],["Capacity",`${hall.capacity} seats`],["Status",status.occupied?"Occupied":"Available"]].map(([k,v])=>(
             <div key={k} style={{background:t.surface2,borderRadius:10,padding:"10px 14px"}}>
               <div style={{fontSize:11,color:t.textHint,textTransform:"uppercase",letterSpacing:"0.05em",marginBottom:3}}>{k}</div>
-              <div style={{fontSize:13,fontWeight:700,color:k==="Status"?(status.occupied?t.red:t.green):t.text}}>{v}</div>
+              <div style={{fontSize:13,fontWeight:700,color:k==="Status"?(status.occupied?t.red:t.green):t.text,display:"flex",alignItems:"center",justifyContent:k==="Location"?"space-between":"flex-start",gap:10}}>
+                <span>{v}</span>
+                {k==="Location"&&(
+                  <button onClick={openDirections} style={{background:"transparent",border:"none",color:t.blue,fontSize:18,cursor:"pointer"}} aria-label="Get directions to hall">📍</button>
+                )}
+              </div>
             </div>
           ))}
         </div>
@@ -298,7 +345,7 @@ function BookModal({hall,recurringBookings,dailyBookings,bookingPassword,onConfi
   function confirm(){
     setPasswordError("");
     if(!bookingPassword){
-      setPasswordError("Booking password has not been generated by the admin yet.");
+      setPasswordError("Please take password from admin.");
       return;
     }
     if(password.trim() !== bookingPassword){
@@ -582,7 +629,7 @@ function AdminPage({
             return(
               <div key={h.id} style={{background:t.surface,border:`1px solid ${status.occupied?t.redBorder:t.border}`,borderRadius:12,padding:"12px 14px"}}>
                 <div style={{fontWeight:700,fontSize:13,color:t.text,marginBottom:3}}>{h.name}</div>
-                <div style={{fontSize:11,color:t.textSub,marginBottom:8}}>{h.block}</div>
+                <div style={{fontSize:11,color:t.textSub,marginBottom:8}}>{h.location}</div>
                 <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
                   <span style={{fontSize:11,padding:"2px 8px",borderRadius:6,background:status.occupied?t.redBg:t.greenBg,color:status.occupied?t.red:t.green,fontWeight:600}}>
                     {status.occupied?"Occupied":"Free"}
@@ -613,7 +660,7 @@ function HallCard({hall,recurringBookings,dailyBookings,onDetail,onBook,t,tick}:
         <div style={{fontWeight:800,fontSize:13,color:t.text,letterSpacing:"0.01em"}}>{hall.name}</div>
         <div style={{width:8,height:8,borderRadius:"50%",background:occ?"#ef4444":"#22c55e",flexShrink:0,marginTop:3}}/>
       </div>
-      <div style={{fontSize:11,color:t.textSub,marginBottom:8,lineHeight:1.4}}>{hall.block}</div>
+      <div style={{fontSize:11,color:t.textSub,marginBottom:8,lineHeight:1.4}}>📍 {hall.location}</div>
       <div style={{fontSize:12,color:occ?t.red:t.green,fontWeight:600,lineHeight:1.4}}>{status.label}</div>
       {status.booking&&(
         <div style={{marginTop:6,fontSize:11,color:t.textHint}}>{status.booking.label} · ends {status.booking.endTime}</div>
@@ -810,7 +857,7 @@ export default function App(){
 
   const searchTerm=hallSearch.trim().toLowerCase();
   const searchedHalls=searchTerm
-    ? HALLS.filter(h=>`${h.name} ${h.fullName} ${h.block} ${h.id}`.toLowerCase().includes(searchTerm))
+    ? HALLS.filter(h=>`${h.name} ${h.fullName} ${h.location} ${h.id}`.toLowerCase().includes(searchTerm))
     : HALLS;
   const occupiedAll=HALLS.filter(h=>getHallStatus(h.id,recurringBookings,dailyBookings).occupied);
   const availableAll=HALLS.filter(h=>!getHallStatus(h.id,recurringBookings,dailyBookings).occupied);
@@ -940,7 +987,7 @@ export default function App(){
                 type="search"
                 value={hallSearch}
                 onChange={e=>setHallSearch(e.target.value)}
-                placeholder="Search hall by name, block, or code"
+                placeholder="Search hall by name, location, or code"
                 aria-label="Search halls"
                 style={{width:"100%",padding:"13px 44px 13px 16px",borderRadius:12,background:t.inputBg,border:`1px solid ${t.inputBorder}`,color:t.text,fontSize:14,boxSizing:"border-box",outline:"none",boxShadow:"0 10px 30px rgba(0,0,0,0.08)"}}
               />
