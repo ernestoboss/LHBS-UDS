@@ -18,7 +18,7 @@ const HALLS_RAW = [
   { id:"VS-LT10",    name:"VS LT 10",        fullName:"Veterinary Sciences Lecture Theatre 10",           block:"Veterinary Sciences (VS)",  capacity:36 },
   { id:"VS-LT11",    name:"VS LT 11",        fullName:"Veterinary Sciences Lecture Theatre 11",           block:"Veterinary Sciences (VS)",  capacity:51 },
   { id:"VS-LT12",    name:"VS LT 12",        fullName:"Veterinary Sciences Lecture Theatre 12",           block:"Veterinary Sciences (VS)",  capacity:48 },
-  { id:"AUDITORIUM", name:"AUDITORIUM",      fullName:"Main Auditorium, Nyankpala Campus",                block:"Main Campus",               capacity:500 },
+  { id:"AUDITORIUM", name:"AUDITORIUM",      fullName:"Main Auditorium, Nyankpala Campus",                block:"Nyanpkala Campus",               capacity:500 },
   { id:"LIB-LT1",    name:"LIB LT 1",        fullName:"Library Block Lecture Theatre 1",                 block:"Library (LIB)",             capacity:102 },
   { id:"LIB-LT2",    name:"LIB LT 2",        fullName:"Library Block Lecture Theatre 2",                 block:"Library (LIB)",             capacity:112 },
   { id:"LIB-LT3",    name:"LIB LT 3",        fullName:"Library Block Lecture Theatre 3",                 block:"Library (LIB)",             capacity:84 },
@@ -63,13 +63,13 @@ function getHallCoords(id:string, block:string){
   if(block === "Agriculture (AG)"){
     return {lat:9.4153683611, lng:-0.9861966111};
   }
-  if(block === "DAAD"){
+  if(block === "MEET UNIT"){
     return {lat:9.412128, lng:-0.980902};
   }
   if(block === "Library (LIB)"){
     return {lat:9.413912, lng:-0.980027};
   }
-  if(block === "KODEG"){
+  if(block ==="GETFUND"){
     return {lat:9.413674, lng:-0.981385};
   }
   if(block === "Silver Jubilee (SJ)"){
@@ -78,8 +78,11 @@ function getHallCoords(id:string, block:string){
   if(block === "Great Hall"){
     return {lat:9.41544, lng:-0.98644};
   }
-  if(block === "Main Campus" && id === "AUDITORIUM"){
-    return {lat:9.412907, lng:-0.86048};
+  if(block === "Nyanpkala Campus"){
+    if(id === "AUDITORIUM"){
+      return {lat:9.412731, lng:-0.985962};
+    }
+    return {lat:9.412731, lng:-0.985962};
   }
   if(block === "Veterinary Sciences (VS)"){
     if(id === "VS-LT12"){
