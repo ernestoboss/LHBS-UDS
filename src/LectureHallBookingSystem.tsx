@@ -41,7 +41,7 @@ const HALLS_RAW = [
   { id:"KODEG-FF-LT5",name:"KODEG FF LT 5",  fullName:"KODEG First Floor Lecture Theatre 5",             block:"GETFUND",                     capacity:25 },
   { id:"SJ-GF-LT1A", name:"SJ GF LT 1A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 1A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT1B", name:"SJ GF LT 1B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 1B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
-  { id:"SJ-GF-LT2A", name:"SJ GF LT 2A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 2A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
+  { id:"SJ-GF-LT2A", name:"SJ GF LT 2A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 2A",         block:"Silver Jubilee (SJ)",                  capacity:45 },
   { id:"SJ-GF-LT2B", name:"SJ GF LT 2B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 2B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT3A", name:"SJ GF LT 3A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 3A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT3B", name:"SJ GF LT 3B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 3B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
