@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import type { Dispatch, FormEvent, SetStateAction } from "react";
+import { Eye, EyeOff, MapPin } from "lucide-react";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
 import { ref, onValue, set, remove } from "firebase/database";
 import { auth, db } from "./firebase";
@@ -269,7 +270,9 @@ function HallDetail({hall,recurringBookings,dailyBookings,onClose,onBook,t,starr
               <div style={{fontSize:13,fontWeight:700,color:k==="Status"?(status.occupied?t.red:t.green):t.text,display:"flex",alignItems:"center",justifyContent:k==="Location"?"space-between":"flex-start",gap:10}}>
                 <span>{v}</span>
                 {k==="Location"&&(
-                  <button onClick={openDirections} style={{background:"transparent",border:"none",color:t.blue,fontSize:18,cursor:"pointer"}} aria-label="Get directions to hall">📍</button>
+                  <button onClick={openDirections} style={{background:"transparent",border:"none",color:t.blue,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}} aria-label="Get directions to hall">
+                    <MapPin size={18} strokeWidth={2.2} />
+                  </button>
                 )}
               </div>
             </div>
@@ -456,6 +459,8 @@ function AdminPage({
   const [rError,setRError]=useState("");
   const [loginEmail,setLoginEmail]=useState("");
   const [loginPassword,setLoginPassword]=useState("");
+  const [showLoginPassword,setShowLoginPassword]=useState(false);
+  const [showBookingPassword,setShowBookingPassword]=useState(false);
   const [loginError,setLoginError]=useState("");
   const [loginLoading,setLoginLoading]=useState(false);
 
@@ -493,8 +498,18 @@ function AdminPage({
         <form onSubmit={loginAdmin}>
           <input type="email" placeholder="Admin email" value={loginEmail} onChange={e=>setLoginEmail(e.target.value)}
             style={{width:"100%",padding:"12px 14px",borderRadius:10,background:t.inputBg,border:`1px solid ${t.inputBorder}`,color:t.text,fontSize:14,boxSizing:"border-box",outline:"none",marginBottom:10}}/>
-          <input type="password" placeholder="Password" value={loginPassword} onChange={e=>setLoginPassword(e.target.value)}
-            style={{width:"100%",padding:"12px 14px",borderRadius:10,background:t.inputBg,border:`1px solid ${t.inputBorder}`,color:t.text,fontSize:14,boxSizing:"border-box",outline:"none",marginBottom:10}}/>
+          <div style={{position:"relative",marginBottom:10}}>
+            <input type={showLoginPassword?"text":"password"} placeholder="Password" value={loginPassword} onChange={e=>setLoginPassword(e.target.value)}
+              style={{width:"100%",padding:"12px 44px 12px 14px",borderRadius:10,background:t.inputBg,border:`1px solid ${t.inputBorder}`,color:t.text,fontSize:14,boxSizing:"border-box",outline:"none"}}/>
+            <button
+              type="button"
+              onClick={()=>setShowLoginPassword(show=>!show)}
+              aria-label={showLoginPassword?"Hide password":"Show password"}
+              style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",width:28,height:28,border:"none",background:"transparent",color:t.textSub,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}}
+            >
+              {showLoginPassword?<EyeOff size={18} strokeWidth={2.1}/>:<Eye size={18} strokeWidth={2.1}/>}
+            </button>
+          </div>
           {loginError&&<div style={{color:t.red,fontSize:13,marginBottom:10}}>{loginError}</div>}
           <button type="submit" disabled={loginLoading} style={{width:"100%",padding:"12px",borderRadius:12,background:"linear-gradient(135deg,#3b82f6,#2563eb)",color:"#fff",border:"none",fontSize:15,fontWeight:700,cursor:loginLoading?"not-allowed":"pointer"}}>
             {loginLoading?"Signing in...":"Sign in"}
@@ -520,7 +535,21 @@ function AdminPage({
       <div className="lhbs-admin-password-panel" style={{background:t.surface,border:`1px solid ${t.border}`,borderRadius:16,padding:20,marginBottom:18,display:"flex",justifyContent:"space-between",gap:16,alignItems:"center",flexWrap:"wrap",boxShadow:"0 18px 60px rgba(0,0,0,0.08)"}}>
         <div>
           <div style={{fontSize:12,fontWeight:700,color:t.textSub,textTransform:"uppercase",letterSpacing:"0.05em",marginBottom:6}}>Booking Password</div>
-          <div style={{fontSize:28,fontWeight:800,color:t.text,letterSpacing:"0.08em"}}>{bookingPassword?.value || "Not set"}</div>
+          <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+            <div style={{fontSize:28,fontWeight:800,color:t.text,letterSpacing:"0.08em"}}>
+              {bookingPassword?.value ? (showBookingPassword ? bookingPassword.value : "••••••") : "Not set"}
+            </div>
+            {bookingPassword?.value&&(
+              <button
+                type="button"
+                onClick={()=>setShowBookingPassword(show=>!show)}
+                aria-label={showBookingPassword?"Hide booking password":"Show booking password"}
+                style={{width:34,height:34,borderRadius:9,border:`1px solid ${t.border}`,background:t.surface2,color:t.textSub,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}}
+              >
+                {showBookingPassword?<EyeOff size={18} strokeWidth={2.1}/>:<Eye size={18} strokeWidth={2.1}/>}
+              </button>
+            )}
+          </div>
           <div style={{fontSize:12,color:t.textHint,marginTop:4}}>
             Users must enter this password before a hall booking is saved.
           </div>
@@ -663,7 +692,10 @@ function HallCard({hall,recurringBookings,dailyBookings,onDetail,onBook,t,tick}:
         <div style={{fontWeight:800,fontSize:13,color:t.text,letterSpacing:"0.01em"}}>{hall.name}</div>
         <div style={{width:8,height:8,borderRadius:"50%",background:occ?"#ef4444":"#22c55e",flexShrink:0,marginTop:3}}/>
       </div>
-      <div style={{fontSize:11,color:t.textSub,marginBottom:8,lineHeight:1.4}}>📍 {hall.location}</div>
+      <div style={{fontSize:11,color:t.textSub,marginBottom:8,lineHeight:1.4,display:"flex",alignItems:"center",gap:5}}>
+        <MapPin size={13} strokeWidth={2.2} />
+        <span>{hall.location}</span>
+      </div>
       <div style={{fontSize:12,color:occ?t.red:t.green,fontWeight:600,lineHeight:1.4}}>{status.label}</div>
       {status.booking&&(
         <div style={{marginTop:6,fontSize:11,color:t.textHint}}>{status.booking.label} · ends {status.booking.endTime}</div>
