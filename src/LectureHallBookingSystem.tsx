@@ -53,7 +53,7 @@ const HALLS_RAW = [
   { id:"SJ-GF-LT6B", name:"SJ GF LT 6B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 6B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT7A", name:"SJ GF LT 7A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 7A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT7B", name:"SJ GF LT 7B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 7B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
-  { id:"SJ-GF-LT8A", name:"SJ GF LT 8A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 8A",         block:"Silver Jubilee (SJ)",                  capacity:45 },
+  { id:"SJ-GF-LT8A", name:"SJ GF LT 8A",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 8A",         block:"Silver Jubilee (SJ)",                  capacity:50 },
   { id:"SJ-GF-LT8B", name:"SJ GF LT 8B",    fullName:"Silver Jubilee Block Ground Floor Lecture Theatre 8B",         block:"Silver Jubilee (SJ)",                  capacity:50 },
 ];
 
@@ -1003,7 +1003,7 @@ export default function App(){
               Lecture Hall Booking System
             </h1>
             <p style={{color:t.textSub,fontSize:15,lineHeight:1.7,maxWidth:520,margin:"0 auto 1.5rem"}}>
-              Real-time availability across all 46 lecture halls. Admins can sign in and manage bookings securely.
+             
             </p>
             <div className="lhbs-stats" style={{display:"flex",gap:"1rem",justifyContent:"center",flexWrap:"wrap"}}>
               {stats.map(s=>(
